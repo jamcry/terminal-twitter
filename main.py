@@ -1,6 +1,8 @@
 import tweepy
 import json
 import sys
+import os.path
+
 showType = "all"
 def getSysArg():
     #returns the commandline argument, or pass if not given
@@ -29,7 +31,9 @@ if option == "--settings":
             print(" Invalid choice. Enter 'q' to exit.")
 
 try:
-    with open("keys.json", "r") as f:
+    run_path = os.path.abspath(os.path.dirname(__file__)) 
+    path = os.path.join(run_path, "./keys.json")
+    with open(path, "r") as f:
         # Load developer keys from json file
         keys = json.load(f)
 except FileNotFoundError:
